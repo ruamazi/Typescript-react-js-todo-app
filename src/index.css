@@ -12,6 +12,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: sans-serif;
+  overflow-x: hidden;
 }
 /*app*/
 .app {
@@ -80,29 +81,80 @@ body {
   box-shadow: 0 0 5px black;
 }
 /*TodoList*/
+.main-contianer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  width: 95%;
+  margin-top: 10px;
+}
 .todos-wrapper {
   display: flex;
-  justify-content: space-evenly;
-  width: 90%;
-  flex-wrap: wrap;
+  width: 50%;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: rgba(97, 97, 97, 0.13);
+}
+.todos-wrapper h3 {
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 10px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(80, 228, 147, 0.589),
+    transparent
+  );
+  text-shadow: 1px 1px 1px black;
+}
+.completed-wrapper h3 {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(228, 80, 80, 0.589),
+    transparent
+  );
 }
 .todo-card {
   flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 29.5%;
+  width: 100%;
   border-radius: 10px;
   padding: 20px;
   margin-top: 15px;
-  background-image: url("");
+  position: relative;
   background: linear-gradient(
     70deg,
     rgba(53, 121, 81, 0.356),
     rgba(8, 160, 180, 0.767)
   );
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+.todo-card:hover {
+  transform: scale(1.03);
+  outline: 2px solid white;
+  box-shadow: none;
+}
+.todo-card::before {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  content: "";
+  opacity: 0.25;
+  background-image: url("https://img.freepik.com/premium-vector/stars-night-sky-background_697972-268.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+  border-radius: 10px;
 }
 .single-todo-text {
   flex: 1;
@@ -168,13 +220,15 @@ body {
 .done-icon::before {
   content: "Done";
 }
-
-/*end*/
-@media (max-width: 1200px) {
-  .todo-card {
-    width: 40%;
-  }
+.completed-wrapper {
+  background: linear-gradient(
+    to top,
+    rgba(255, 0, 0, 0.103),
+    rgba(255, 0, 0, 0.123)
+  );
 }
+/*end*/
+
 @media (max-width: 800px) {
   .App {
     margin: 15px 0;
@@ -182,8 +236,9 @@ body {
   }
   .todos-wrapper {
     width: 95%;
+    margin-bottom: 10px;
   }
-  .todo-card {
-    width: 100%;
+  .main-contianer {
+    flex-direction: column;
   }
 }
